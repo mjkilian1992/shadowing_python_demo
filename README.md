@@ -25,5 +25,11 @@ The frontend uses TailwindCSS, which watches for changes in Django templates and
 To start the CSS watcher:
 - `make watch-css`
 
+To have the files served by Django, you need to create a symlink to the relevant files from the static folder. Note
+this setup is in no way production safe, and should be replaced by proper static files serving as per Django's documentation.
+1. `cd static`
+2. `ln -s ../frontend/build.css build.css`
+3. `ln -s ../frontend/node_modules/flowbite/dist/flowbite.min.js flowbite.js`
+
 ### Other commands
 - See the `Makefile` for other commands, such as `make test` to run the tests.
