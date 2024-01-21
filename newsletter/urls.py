@@ -22,6 +22,6 @@ from newsletter import views as index_views
 urlpatterns = [
     path("", index_views.HomePageView.as_view(), name="home"),
     path("articles/", index_views.ArticlesView.as_view(), name="articles"),
-    path("customer/", include("customer.urls")),
+    path("customer/", include("customer.urls"), name="customer"),
     path("admin/", admin.site.urls),
 ]
