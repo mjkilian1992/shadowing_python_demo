@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    section > h1 {
+        @apply mb-2 text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-extrabold;
+    }
+
+    p {
+        @apply font-sans-serif
+    }
+}
+

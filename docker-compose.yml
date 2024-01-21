@@ -1,0 +1,32 @@
+services:
+  app:
+    build: .
+    image: crm_backed_site:${TAG-default}
+    ports:
+      - 8000:8000
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - '/app/.venv'
+      - './:/app'
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db: &db
+    image: public.ecr.aws/docker/library/postgres:16-alpine
+    environment: &db-environment
+      POSTGRES_USER: crm
+      POSTGRES_PASSWORD: password
+    healthcheck: &db-healthcheck
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -d crm -U crm'" ]
+      interval: 1s
+      timeout: 3s
+      retries: 10
+      start_period: 3s
+    volumes:
+      - 'db-data:/var/lib/postgresql/data'
+
+volumes:
+  db-data:
