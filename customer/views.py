@@ -17,7 +17,7 @@ class SignUp(FormView):
     success_url = "/customer/thanks/"
 
     def form_valid(self, form):
-        form.save()
+        print(f"FORM DATA: {form.cleaned_data}")
         return super().form_valid(form)
 
 
