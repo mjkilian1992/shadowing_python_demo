@@ -42,4 +42,8 @@ class DjangoCustomerRepository(CustomerRepository):
             return None
 
     def create(self, customer: CustomerCreate) -> None:
-        pass
+        customer_models.Customer.objects.create(
+            first_name=customer.first_name,
+            last_name=customer.last_name,
+            email=customer.email,
+        )
