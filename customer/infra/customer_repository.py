@@ -1,7 +1,7 @@
 import abc
 
 from customer import models as customer_models
-from customer.domain.customer import CustomerEntity
+from customer.domain.customer import CustomerCreate, CustomerEntity
 
 
 class CustomerRepository(abc.ABC):
@@ -14,7 +14,7 @@ class CustomerRepository(abc.ABC):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def add(self, customer: CustomerEntity) -> None:
+    def create(self, customer: CustomerCreate) -> None:
         raise NotImplementedError()
 
 
@@ -41,5 +41,5 @@ class DjangoCustomerRepository(CustomerRepository):
         except customer_models.Customer.DoesNotExist:
             return None
 
-    def create(self, customer: CustomerEntity) -> None:
+    def create(self, customer: CustomerCreate) -> None:
         pass
