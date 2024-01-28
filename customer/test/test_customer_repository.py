@@ -13,6 +13,8 @@ def customer_repository():
 @pytest.mark.django_db
 class TestCustomerDjangoRepository:
     def test_create(self, customer_repository):
+        assert customer_models.Customer.objects.count() == 0
+
         customer_entity = CustomerCreate(
             first_name="Test", last_name="Customer", email="test@fake.com"
         )
